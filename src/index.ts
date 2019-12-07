@@ -41,7 +41,7 @@ export function appendProps(source: any, predicate: HashMap, newProps: HashMap):
     const itemClone: HashMap = { ...item };
 
     Object.keys(item).forEach((key: string): void => {
-      if (Array.isArray(item[key])) {
+      if (typeof item[key] === 'object') {
         itemClone[key] = appendProps(item[key], predicate, newProps);
       }
     });
@@ -78,7 +78,7 @@ export function replaceAllProps(source: any, predicate: HashMap, replaceWith: Ha
     const itemClone: HashMap = { ...item };
 
     Object.keys(item).forEach((key: string): void => {
-      if (Array.isArray(item[key])) {
+      if (typeof item[key] === 'object') {
         itemClone[key] = replaceAllProps(item[key], predicate, replaceWith);
       }
     });
@@ -119,7 +119,7 @@ export function replaceSomeProps(source: any, predicate: HashMap, replaceProps: 
     }
 
     Object.keys(item).forEach((key: string): void => {
-      if (Array.isArray(item[key])) {
+      if (typeof item[key] === 'object') {
         itemClone[key] = replaceSomeProps(item[key], predicate, replaceProps);
       }
     });
@@ -151,7 +151,7 @@ export function removeObject(source: any, predicate: HashMap): any | undefined {
     const itemClone: HashMap = { ...item };
 
     Object.keys(item).forEach((key: string): void => {
-      if (Array.isArray(item[key])) {
+      if (typeof item[key] === 'object') {
         itemClone[key] = removeObject(item[key], predicate);
       }
     });

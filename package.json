@@ -1,7 +1,7 @@
 {
   "name": "find-and",
-  "version": "0.1.0",
-  "description": "Nested objects replace package",
+  "version": "0.1.1",
+  "description": "Find a nested object and: add new / replace all / replace some of it's props",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/arfeo/find-and.git"
@@ -20,7 +20,12 @@
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "nested",
+    "object",
+    "replace",
+    "properties"
+  ],
   "author": "Arfeo.net",
   "license": "MIT",
   "devDependencies": {

@@ -1,10 +1,11 @@
 # find-and
 
-Find a nested object and immutably do something...
+Find a nested object and immutably do these things:
 
 * `appendProps`: append props to the found object.
 * `replaceAllProps`: replace all props of the found object.
 * `replaceSomeProps`: replace some existing props of the found object.
+* `removeObject`: remove the found object.
 
 ## Installation
 
@@ -137,8 +138,35 @@ const data = [
       },
     ]
     ```
+   
+1. The result of `removeObject(data, { id: 3 })`:
 
-The behavior is the same for an object.
+    ```
+    [
+      {
+        id: 1,
+        name: 'One',
+        children: [
+          {
+            id: 2,
+            name: 'Two',
+            children: [
+              {
+                id: 4,
+                name: 'Four',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: 5,
+        name: 'Five',
+      },
+    ]
+    ```
+
+The behavior is quite the same for an object.
 
 ```js
 const data = {

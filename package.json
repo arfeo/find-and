@@ -1,6 +1,6 @@
 {
   "name": "find-and",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "Find a nested object and: add new props or replace some of it's props, replace it, remove it.",
   "repository": {
     "type": "git",

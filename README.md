@@ -78,7 +78,7 @@ const data = [
     ]
     ```
 
-1. The result of `replaceAllProps(data, { id: 3 }, { id: 30 })`:
+1. The result of `replaceObject(data, { id: 3 }, { id: 30 })`:
 
     ```
     [
@@ -108,7 +108,7 @@ const data = [
     ]
     ```
 
-1. The result of `replaceSomeProps(data, { id: 2 }, { name: 'Foo' })`:
+1. The result of `changeProps(data, { id: 2 }, { name: 'Foo' })`:
 
     ```
     [
@@ -185,7 +185,7 @@ const data = {
 };
 ```
 
-In this case, the result of `replaceSomeProps(data, { name: 'One' }, { name: 'Foo' })`:
+In this case, the result of `changeProps(data, { name: 'One' }, { name: 'Foo' })`:
 
 ```
 {

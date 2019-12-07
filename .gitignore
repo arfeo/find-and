@@ -1,0 +1,9 @@
+# Dependency directory
+node_modules
+
+# Garbage files
+.DS_Store
+
+# Other
+lib/
+.idea/

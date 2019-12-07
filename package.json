@@ -1,0 +1,32 @@
+{
+  "name": "find-and",
+  "version": "0.1.0",
+  "description": "Nested objects replace package",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arfeo/find-and.git"
+  },
+  "bugs": {
+    "url": "https://github.com/arfeo/find-and/issues"
+  },
+  "homepage": "https://github.com/arfeo/find-and#readme",
+  "main": "lib/index.js",
+  "files": [
+    "lib/**/*",
+    "index.d.ts",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Arfeo.net",
+  "license": "MIT",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^1.13.0",
+    "@typescript-eslint/parser": "^1.13.0",
+    "eslint": "^6.6.0",
+    "typescript": "^3.7.3"
+  }
+}

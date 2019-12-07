@@ -157,7 +157,7 @@ const data = {
 };
 ```
 
-In this case, the result of `replaceSomeProps(obj2, { name: 'One' }, { name: 'Foo'})`:
+In this case, the result of `replaceSomeProps(data, { name: 'One' }, { name: 'Foo'})`:
 
 ```
 {

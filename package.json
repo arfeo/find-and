@@ -1,7 +1,7 @@
 {
   "name": "find-and",
-  "version": "0.1.1",
-  "description": "Find a nested object and: add new / replace all / replace some of it's props",
+  "version": "0.1.2",
+  "description": "Find a nested object and: add new props or replace some of it's props, replace it, remove it.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/arfeo/find-and.git"

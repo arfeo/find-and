@@ -3,8 +3,8 @@
 Find a nested object and immutably do these things:
 
 * `appendProps`: append props to the found object.
-* `replaceAllProps`: replace all props of the found object.
-* `replaceSomeProps`: replace some existing props of the found object.
+* `replaceObject`: replace all props of the found object.
+* `changeProps`: replace some existing props of the found object.
 * `removeObject`: remove the found object.
 
 ## Installation

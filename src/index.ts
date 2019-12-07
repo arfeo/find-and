@@ -65,7 +65,7 @@ export function appendProps(source: any, predicate: HashMap, newProps: HashMap):
  * @param predicate
  * @param replaceWith
  */
-export function replaceAllProps(source: any, predicate: HashMap, replaceWith: HashMap): any | undefined {
+export function replaceObject(source: any, predicate: HashMap, replaceWith: HashMap): any | undefined {
   if (!source) {
     return undefined;
   }
@@ -79,7 +79,7 @@ export function replaceAllProps(source: any, predicate: HashMap, replaceWith: Ha
 
     Object.keys(item).forEach((key: string): void => {
       if (typeof item[key] === 'object') {
-        itemClone[key] = replaceAllProps(item[key], predicate, replaceWith);
+        itemClone[key] = replaceObject(item[key], predicate, replaceWith);
       }
     });
 
@@ -102,7 +102,7 @@ export function replaceAllProps(source: any, predicate: HashMap, replaceWith: Ha
  * @param predicate
  * @param replaceProps
  */
-export function replaceSomeProps(source: any, predicate: HashMap, replaceProps: HashMap): any | undefined {
+export function changeProps(source: any, predicate: HashMap, replaceProps: HashMap): any | undefined {
   if (!source) {
     return undefined;
   }
@@ -120,7 +120,7 @@ export function replaceSomeProps(source: any, predicate: HashMap, replaceProps: 
 
     Object.keys(item).forEach((key: string): void => {
       if (typeof item[key] === 'object') {
-        itemClone[key] = replaceSomeProps(item[key], predicate, replaceProps);
+        itemClone[key] = changeProps(item[key], predicate, replaceProps);
       }
     });
 

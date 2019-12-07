@@ -107,7 +107,7 @@ const data = [
     ]
     ```
 
-1. The result of `replaceSomeProps(data, { id: 2 }, { name: 'Foo'})`:
+1. The result of `replaceSomeProps(data, { id: 2 }, { name: 'Foo' })`:
 
     ```
     [
@@ -157,7 +157,7 @@ const data = {
 };
 ```
 
-In this case, the result of `replaceSomeProps(data, { name: 'One' }, { name: 'Foo'})`:
+In this case, the result of `replaceSomeProps(data, { name: 'One' }, { name: 'Foo' })`:
 
 ```
 {

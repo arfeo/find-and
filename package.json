@@ -1,6 +1,6 @@
 {
   "name": "find-and",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Find a nested object and immutably appendProps / replaceObject / changeProps / removeObject.",
   "repository": {
     "type": "git",

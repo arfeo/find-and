@@ -78,7 +78,7 @@ export function replaceObject(source: any, predicate: HashMap, replaceWith: Hash
     return itemClone;
   };
 
-  if ((Array.isArray(source) || isObject(source)) && !isEmpty(predicate) && isObject(replaceWith)) {
+  if ((Array.isArray(source) || isObject(source)) && !isEmpty(predicate) && !isEmpty(replaceWith)) {
     return !Array.isArray(source) ? processObject(source) : source.map((item: HashMap): any => processObject(item));
   }
 
@@ -110,18 +110,18 @@ export function changeProps(source: any, predicate: HashMap, replaceProps: HashM
           itemClone[key] = replaceProps[key];
         }
       });
+    } else {
+      Object.keys(item).forEach((key: string): void => {
+        if (isObject(item[key]) || Array.isArray(item[key])) {
+          itemClone[key] = changeProps(item[key], predicate, replaceProps);
+        }
+      });
     }
-
-    Object.keys(item).forEach((key: string): void => {
-      if (isObject(item[key]) || Array.isArray(item[key])) {
-        itemClone[key] = changeProps(item[key], predicate, replaceProps);
-      }
-    });
 
     return itemClone;
   };
 
-  if ((Array.isArray(source) || isObject(source)) && !isEmpty(predicate) && isObject(replaceProps)) {
+  if ((Array.isArray(source) || isObject(source)) && !isEmpty(predicate) && !isEmpty(replaceProps)) {
     return !Array.isArray(source) ? processObject(source) : source.map((item: HashMap): any => processObject(item));
   }
 

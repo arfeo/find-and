@@ -1,6 +1,6 @@
 import { removeObject } from '../src';
 
-const data = [
+const data: { [key: string]: any } = [
   {
     id: 1,
     name: 'One',
@@ -27,7 +27,7 @@ const data = [
   },
 ];
 
-const modifiedData = [
+const modifiedData: { [key: string]: any } = [
   {
     id: 1,
     name: 'One',

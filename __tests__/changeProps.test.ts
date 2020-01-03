@@ -1,6 +1,6 @@
 import { changeProps } from '../src';
 
-const data = [
+const data: { [key: string]: any } = [
   {
     id: 1,
     name: 'One',
@@ -27,7 +27,7 @@ const data = [
   },
 ];
 
-const modifiedData = [
+const modifiedData1: { [key: string]: any } = [
   {
     id: 1,
     name: 'One',
@@ -45,6 +45,24 @@ const modifiedData = [
             name: 'Four',
           },
         ],
+      },
+    ],
+  },
+  {
+    id: 5,
+    name: 'Five',
+  },
+];
+
+const modifiedData2: { [key: string]: any } = [
+  {
+    id: 1,
+    name: 'One',
+    children: [
+      {
+        id: 2,
+        name: 'Two',
+        children: [],
       },
     ],
   },
@@ -80,6 +98,10 @@ describe('changeProps function', (): void => {
   });
 
   test('should change the id prop of the object with id = 3 to 30, skipping the unknownProp', (): void => {
-    expect(changeProps(data, { id: 3 }, { id: 30, unknownProp: [] })).toEqual(modifiedData);
+    expect(changeProps(data, { id: 3 }, { id: 30, unknownProp: [] })).toEqual(modifiedData1);
+  });
+
+  test('should change the children prop of the object with id = 2 to an empty array', (): void => {
+    expect(changeProps(data, { id: 2 }, { children: [] })).toEqual(modifiedData2);
   });
 });

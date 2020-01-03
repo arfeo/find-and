@@ -4,7 +4,7 @@ interface HashMap {
 
 /**
  * Function appends props to a nested object in an object or object array.
- * If the `source` param is null or undefined, function returns undefined.
+ * If the `source` param is undefined, function returns undefined.
  * If the `source` param is not an object, function returns it as is.
  * If whether `predicate` or `newProps` param is not an object,
  * or the `predicate` object is empty, function returns the unmodified `source`.
@@ -13,7 +13,7 @@ export function appendProps(source: any, predicate: HashMap, newProps: HashMap):
 
 /**
  * Function replaces __all__ props of a nested object in an object or object array.
- * If the `source` param is null or undefined, function returns undefined.
+ * If the `source` param is undefined, function returns undefined.
  * If the `source` param is not an object, function returns it as is.
  * If whether `predicate` or `replaceWith` param is not an object,
  * or the `predicate` object is empty, function returns the unmodified `source`.
@@ -22,7 +22,7 @@ export function replaceObject(source: any, predicate: HashMap, replaceWith: Hash
 
 /**
  * Function replaces some __existing__ props of a nested object in an object or object array.
- * If the `source` param is null or undefined, function returns undefined.
+ * If the `source` param is undefined, function returns undefined.
  * If the `source` param is not an object, function returns it as is.
  * If whether `predicate` or `replaceProps` param is not an object,
  * or the `predicate` object is empty, function returns the unmodified `source`.
@@ -31,7 +31,7 @@ export function changeProps(source: any, predicate: HashMap, replaceProps: HashM
 
 /**
  * Function removes a nested object in an object or object array.
- * If the `source` param is null or undefined, function returns undefined.
+ * If the `source` param is undefined, function returns undefined.
  * If the `source` param is not an object, function returns it as is.
  * If the `predicate` param is not an object or it is empty, function returns the unmodified `source`.
  */

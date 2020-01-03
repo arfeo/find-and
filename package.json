@@ -1,7 +1,7 @@
 {
   "name": "find-and",
-  "version": "0.2.0",
-  "description": "Find a nested object and: add new props or replace some of it's props, replace it, remove it.",
+  "version": "1.0.0",
+  "description": "Find a nested object and immutably appendProps / replaceObject / changeProps / removeObject.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/arfeo/find-and.git"
@@ -17,8 +17,8 @@
     "LICENSE"
   ],
   "scripts": {
-    "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "jest && tsc",
+    "test": "jest"
   },
   "keywords": [
     "nested",
@@ -29,9 +29,12 @@
   "author": "Arfeo.net",
   "license": "MIT",
   "devDependencies": {
+    "@types/jest": "^24.0.25",
     "@typescript-eslint/eslint-plugin": "^1.13.0",
     "@typescript-eslint/parser": "^1.13.0",
     "eslint": "^6.6.0",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.2.0",
     "typescript": "^3.7.3"
   }
 }

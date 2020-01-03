@@ -1,4 +1,12 @@
+__tests__/
+coverage/
 src/
+.eslintrc
+.gitignore
+jest.config.js
 tsconfig.json
-tslint.json
 yarn.lock
+
+CODE_OF_CONDUCT.md
+ISSUE_TEMPLATE.md
+PULL_REQUEST_TEMPLATE.md

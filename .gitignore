@@ -5,5 +5,6 @@ node_modules
 .DS_Store
 
 # Other
-lib/
 .idea/
+coverage/
+lib/

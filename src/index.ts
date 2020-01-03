@@ -30,9 +30,9 @@ export function appendProps(source: any, predicate: HashMap, newProps: HashMap):
 
     const itemClone: HashMap = { ...item };
 
-    Object.keys(item).forEach((key: string): void => {
-      if (isObject(item[key]) || Array.isArray(item[key])) {
-        itemClone[key] = appendProps(item[key], predicate, newProps);
+    Object.keys(itemClone).forEach((key: string): void => {
+      if (isObject(itemClone[key]) || Array.isArray(itemClone[key])) {
+        itemClone[key] = appendProps(itemClone[key], predicate, newProps);
       }
     });
 
@@ -63,11 +63,11 @@ export function replaceObject(source: any, predicate: HashMap, replaceWith: Hash
   }
 
   const processObject = (item: HashMap): HashMap => {
-    if (checkAgainstPredicate(item, predicate)) {
+    const itemClone: HashMap = { ...item };
+
+    if (checkAgainstPredicate(itemClone, predicate)) {
       return replaceWith || {};
     }
-
-    const itemClone: HashMap = { ...item };
 
     Object.keys(item).forEach((key: string): void => {
       if (isObject(item[key]) || Array.isArray(item[key])) {
@@ -104,16 +104,16 @@ export function changeProps(source: any, predicate: HashMap, replaceProps: HashM
   const processObject = (item: HashMap): HashMap => {
     const itemClone: HashMap = { ...item };
 
-    if (checkAgainstPredicate(item, predicate)) {
+    if (checkAgainstPredicate(itemClone, predicate)) {
       Object.keys(replaceProps).forEach((key: string): void => {
         if (Object.prototype.hasOwnProperty.call(itemClone, key)) {
           itemClone[key] = replaceProps[key];
         }
       });
     } else {
-      Object.keys(item).forEach((key: string): void => {
-        if (isObject(item[key]) || Array.isArray(item[key])) {
-          itemClone[key] = changeProps(item[key], predicate, replaceProps);
+      Object.keys(itemClone).forEach((key: string): void => {
+        if (isObject(itemClone[key]) || Array.isArray(itemClone[key])) {
+          itemClone[key] = changeProps(itemClone[key], predicate, replaceProps);
         }
       });
     }
@@ -145,8 +145,8 @@ export function removeObject(source: any, predicate: HashMap): any | undefined {
   const processObject = (item: HashMap): HashMap => {
     const itemClone: HashMap = { ...item };
 
-    Object.keys(item).forEach((key: string): void => {
-      if (isObject(item[key]) || Array.isArray(item[key])) {
+    Object.keys(itemClone).forEach((key: string): void => {
+      if (isObject(itemClone[key]) || Array.isArray(itemClone[key])) {
         itemClone[key] = removeObject(item[key], predicate);
       }
     });
@@ -160,9 +160,7 @@ export function removeObject(source: any, predicate: HashMap): any | undefined {
         return processObject(source);
       }
     } else {
-      return source.filter((item: HashMap): boolean => {
-        return !checkAgainstPredicate(item, predicate);
-      }).map((item: HashMap): any => processObject(item));
+      return source.filter((item: HashMap): boolean => !checkAgainstPredicate(item, predicate)).map((item: HashMap): any => processObject(item));
     }
   } else {
     return source;

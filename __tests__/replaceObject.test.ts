@@ -1,6 +1,6 @@
 import { replaceObject } from '../src';
 
-const data: { [key: string]: any } = [
+const data: { [key: string]: any }[] = [
   {
     id: 1,
     name: 'One',
@@ -27,7 +27,7 @@ const data: { [key: string]: any } = [
   },
 ];
 
-const modifiedData: { [key: string]: any } = [
+const modifiedData: { [key: string]: any }[] = [
   {
     id: 1,
     name: 'One',

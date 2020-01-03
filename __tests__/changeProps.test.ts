@@ -1,6 +1,6 @@
 import { changeProps } from '../src';
 
-const data: { [key: string]: any } = [
+const dataArray: { [key: string]: any }[] = [
   {
     id: 1,
     name: 'One',
@@ -27,7 +27,22 @@ const data: { [key: string]: any } = [
   },
 ];
 
-const modifiedData1: { [key: string]: any } = [
+const dataObject: { [key: string]: any } = {
+  name: 'One',
+  description: 'Description',
+  children: [
+    {
+      id: 1,
+      name: 'Two',
+    },
+    {
+      id: 2,
+      name: 'Three',
+    },
+  ],
+};
+
+const modifiedDataArray1: { [key: string]: any }[] = [
   {
     id: 1,
     name: 'One',
@@ -54,7 +69,7 @@ const modifiedData1: { [key: string]: any } = [
   },
 ];
 
-const modifiedData2: { [key: string]: any } = [
+const modifiedDataArray2: { [key: string]: any }[] = [
   {
     id: 1,
     name: 'One',
@@ -72,6 +87,21 @@ const modifiedData2: { [key: string]: any } = [
   },
 ];
 
+const modifiedDataObject: { [key: string]: any } = {
+  name: 'Foo',
+  description: 'Description',
+  children: [
+    {
+      id: 1,
+      name: 'Two',
+    },
+    {
+      id: 2,
+      name: 'Three',
+    },
+  ],
+};
+
 describe('changeProps function', (): void => {
   test('should return NaN if source is NaN', (): void => {
     expect(changeProps(NaN, {}, {})).toEqual(NaN);
@@ -82,26 +112,30 @@ describe('changeProps function', (): void => {
   });
 
   test('should return unmodified source if predicate is not an object', (): void => {
-    expect(changeProps(data, null, {})).toEqual(data);
+    expect(changeProps(dataArray, null, {})).toEqual(dataArray);
   });
 
   test('should return unmodified source if predicate is empty', (): void => {
-    expect(changeProps(data, {}, {})).toEqual(data);
+    expect(changeProps(dataArray, {}, {})).toEqual(dataArray);
   });
 
   test('should return unmodified source if replaceProps is not an object', (): void => {
-    expect(changeProps(data, {}, null)).toEqual(data);
+    expect(changeProps(dataArray, {}, null)).toEqual(dataArray);
   });
 
   test('should return unmodified source if replaceProps is empty', (): void => {
-    expect(changeProps(data, {}, {})).toEqual(data);
+    expect(changeProps(dataArray, {}, {})).toEqual(dataArray);
   });
 
   test('should change the id prop of the object with id = 3 to 30, skipping the unknownProp', (): void => {
-    expect(changeProps(data, { id: 3 }, { id: 30, unknownProp: [] })).toEqual(modifiedData1);
+    expect(changeProps(dataArray, { id: 3 }, { id: 30, unknownProp: [] })).toEqual(modifiedDataArray1);
   });
 
   test('should change the children prop of the object with id = 2 to an empty array', (): void => {
-    expect(changeProps(data, { id: 2 }, { children: [] })).toEqual(modifiedData2);
+    expect(changeProps(dataArray, { id: 2 }, { children: [] })).toEqual(modifiedDataArray2);
+  });
+
+  test('should change the name prop of the object with name = "One" to "Foo"', (): void => {
+    expect(changeProps(dataObject, { name: 'One' }, { name: 'Foo' })).toEqual(modifiedDataObject);
   });
 });

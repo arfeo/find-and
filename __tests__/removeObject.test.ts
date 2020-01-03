@@ -1,6 +1,6 @@
 import { removeObject } from '../src';
 
-const data: { [key: string]: any } = [
+const dataArray: { [key: string]: any }[] = [
   {
     id: 1,
     name: 'One',
@@ -27,7 +27,22 @@ const data: { [key: string]: any } = [
   },
 ];
 
-const modifiedData: { [key: string]: any } = [
+const dataObject: { [key: string]: any } = {
+  name: 'One',
+  description: 'Description',
+  children: [
+    {
+      id: 1,
+      name: 'Two',
+    },
+    {
+      id: 2,
+      name: 'Three',
+    },
+  ],
+};
+
+const modifiedDataArray: { [key: string]: any }[] = [
   {
     id: 1,
     name: 'One',
@@ -60,14 +75,18 @@ describe('removeObject function', (): void => {
   });
 
   test('should return unmodified source if predicate is not an object', (): void => {
-    expect(removeObject(data, null)).toEqual(data);
+    expect(removeObject(dataArray, null)).toEqual(dataArray);
   });
 
   test('should return unmodified source if predicate is empty', (): void => {
-    expect(removeObject(data, {})).toEqual(data);
+    expect(removeObject(dataArray, {})).toEqual(dataArray);
   });
 
   test('should remove the the object with id = 3', (): void => {
-    expect(removeObject(data, { id: 3 })).toEqual(modifiedData);
+    expect(removeObject(dataArray, { id: 3 })).toEqual(modifiedDataArray);
+  });
+
+  test('should remove the the object with name = "One" and return undefined', (): void => {
+    expect(removeObject(dataObject, { name: 'One' })).toEqual(undefined);
   });
 });

@@ -67,11 +67,11 @@ const modifiedDataArray: { [key: string]: any }[] = [
 
 describe('removeObject function', (): void => {
   test('should return null if source is null', (): void => {
-    expect(removeObject(null, {})).toEqual(null);
+    expect(removeObject(null, {})).toBe(null);
   });
 
   test('should return undefined if source is undefined', (): void => {
-    expect(removeObject(undefined, {})).toEqual(undefined);
+    expect(removeObject(undefined, {})).toBe(undefined);
   });
 
   test('should return unmodified source if predicate is not an object', (): void => {
@@ -87,6 +87,6 @@ describe('removeObject function', (): void => {
   });
 
   test('should remove the the object with name = "One" and return undefined', (): void => {
-    expect(removeObject(dataObject, { name: 'One' })).toEqual(undefined);
+    expect(removeObject(dataObject, { name: 'One' })).toBe(undefined);
   });
 });

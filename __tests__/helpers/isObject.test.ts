@@ -2,26 +2,26 @@ import { isObject } from '../../src/helpers';
 
 describe('isObject function', (): void => {
   test('should return true if the given item solely comes from Object', (): void => {
-    expect(isObject({ id: 1 })).toEqual(true);
+    expect(isObject({ id: 1 })).toBe(true);
   });
 
   test('should return false if the given item is an array', (): void => {
-    expect(isObject([])).toEqual(false);
+    expect(isObject([])).toBe(false);
   });
 
   test('should return false if the given item is a string', (): void => {
-    expect(isObject('string')).toEqual(false);
+    expect(isObject('string')).toBe(false);
   });
 
   test('should return false if the given item is a function', (): void => {
-    expect(isObject((): null => null)).toEqual(false);
+    expect(isObject((): null => null)).toBe(false);
   });
 
   test('should return false if the given item is a NaN', (): void => {
-    expect(isObject(NaN)).toEqual(false);
+    expect(isObject(NaN)).toBe(false);
   });
 
   test('should return false if the given item is a number', (): void => {
-    expect(isObject(10)).toEqual(false);
+    expect(isObject(10)).toBe(false);
   });
 });

@@ -85,11 +85,11 @@ const modifiedData2: { [key: string]: any }[] = [
 
 describe('appendProps function', (): void => {
   test('should return 0 if source is 0', (): void => {
-    expect(appendProps(0, {}, {})).toEqual(0);
+    expect(appendProps(0, {}, {})).toBe(0);
   });
 
   test('should return undefined if source is undefined', (): void => {
-    expect(appendProps(undefined, {}, {})).toEqual(undefined);
+    expect(appendProps(undefined, {}, {})).toBe(undefined);
   });
 
   test('should return unmodified source if predicate is not an object', (): void => {

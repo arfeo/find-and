@@ -104,11 +104,11 @@ const modifiedDataObject: { [key: string]: any } = {
 
 describe('changeProps function', (): void => {
   test('should return NaN if source is NaN', (): void => {
-    expect(changeProps(NaN, {}, {})).toEqual(NaN);
+    expect(changeProps(NaN, {}, {})).toBe(NaN);
   });
 
   test('should return undefined if source is undefined', (): void => {
-    expect(changeProps(undefined, {}, {})).toEqual(undefined);
+    expect(changeProps(undefined, {}, {})).toBe(undefined);
   });
 
   test('should return unmodified source if predicate is not an object', (): void => {

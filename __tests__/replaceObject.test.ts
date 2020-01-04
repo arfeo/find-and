@@ -56,11 +56,11 @@ const modifiedData: { [key: string]: any }[] = [
 
 describe('replaceObject function', (): void => {
   test('should return "string" if source is "string"', (): void => {
-    expect(replaceObject('string', {}, {})).toEqual('string');
+    expect(replaceObject('string', {}, {})).toBe('string');
   });
 
   test('should return undefined if source is undefined', (): void => {
-    expect(replaceObject(undefined, {}, {})).toEqual(undefined);
+    expect(replaceObject(undefined, {}, {})).toBe(undefined);
   });
 
   test('should return unmodified source if predicate is not an object', (): void => {

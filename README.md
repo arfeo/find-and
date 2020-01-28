@@ -8,7 +8,7 @@ Find a nested object and do these things:
 * `replaceObject`: replace all props of the found object.
 * `changeProps`: replace some existing props of the found object.
 * `removeObject`: remove the found object.
-* `returnFound`: get the found object, or an object array if there're more than one object found.
+* `returnFound`: get the found object, or an object array if there's more than one object found.
 
 ## Installation
 

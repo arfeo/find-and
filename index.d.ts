@@ -43,4 +43,4 @@ export function removeObject(source: any, predicate: HashMap): any | undefined;
  * If the `source` param is not an object, function returns it as is.
  * If the `predicate` param is not an object, or it's empty, function returns the unmodified `source`.
  */
-export function returnFound(source: any, predicate: HashMap): any | undefined;
+export function returnFound(source: any, predicate: HashMap): any | any[] | undefined;

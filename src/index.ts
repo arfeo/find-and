@@ -172,7 +172,7 @@ export function removeObject(source: any, predicate: HashMap): any | undefined {
  * @param source
  * @param predicate
  */
-export function returnFound(source: any, predicate: HashMap): any | undefined {
+export function returnFound(source: any, predicate: HashMap): any | any[] | undefined {
   if (source === undefined) {
     return undefined;
   }

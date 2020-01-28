@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/arfeo/find-and.svg?branch=master)](https://travis-ci.org/arfeo/find-and)
 
-Find a nested object and do these things:
+Find nested objects and:
 
 * `appendProps`: append props to the found object.
 * `replaceObject`: replace all props of the found object.

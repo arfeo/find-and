@@ -5,6 +5,10 @@ describe('isEmpty function', (): void => {
     expect(isEmpty({})).toBe(true);
   });
 
+  test('should return false if the given item is undefined', (): void => {
+    expect(isEmpty(undefined)).toBe(false);
+  });
+
   test('should return false if the given item is not an object', (): void => {
     expect(isEmpty('string')).toBe(false);
   });

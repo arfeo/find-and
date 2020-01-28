@@ -183,28 +183,36 @@ export function returnFound(source: any, predicate: HashMap): any | undefined {
 
   let result: any | any[] = undefined;
 
-  const processObject = (item: HashMap): void => {
-    if (checkAgainstPredicate(item, predicate)) {
-      if (result) {
-        result = !Array.isArray(result) ? [
-          result,
-          { ...item },
-        ] : [
-          ...result,
-          { ...item },
-        ];
-      } else {
-        result = { ...item };
-      }
-
+  const appendResult = (item: HashMap): void => {
+    if (!item || isEmpty(item)) {
       return;
     }
 
-    Object.keys(item).forEach((key: string): void => {
-      if (isObject(item[key]) || Array.isArray(item[key])) {
-        result = returnFound(item[key], predicate);
-      }
-    });
+    if (result) {
+      result = !Array.isArray(result) ? [
+        result,
+        { ...item },
+      ] : [
+        ...result,
+        { ...item },
+      ];
+    } else {
+      result = item;
+    }
+  };
+
+  const processObject = (item: HashMap): void => {
+    const itemClone: HashMap = { ...item };
+
+    if (checkAgainstPredicate(itemClone, predicate)) {
+      appendResult(itemClone);
+    } else {
+      Object.keys(itemClone).forEach((key: string): void => {
+        if (isObject(itemClone[key]) || Array.isArray(itemClone[key])) {
+          appendResult(returnFound(itemClone[key], predicate));
+        }
+      });
+    }
   };
 
   if ((Array.isArray(source) || isObject(source)) && !isEmpty(predicate)) {

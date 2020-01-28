@@ -41,6 +41,6 @@ export function removeObject(source: any, predicate: HashMap): any | undefined;
  * Function returns the found object, or an object array if there's more than one object found.
  * If the `source` param is undefined, function returns undefined.
  * If the `source` param is not an object, function returns it as is.
- * If `predicate` param is not an object, or it is is empty, function returns the unmodified `source`.
+ * If the `predicate` param is not an object, or it's empty, function returns the unmodified `source`.
  */
 export function returnFound(source: any, predicate: HashMap): any | undefined;

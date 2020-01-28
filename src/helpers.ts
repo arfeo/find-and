@@ -20,8 +20,7 @@ export const isEmpty = (item: any): boolean => {
 
 /**
  * Local helper function.
- * Returns true if __all__ props of the given `predicate` exist and are equal to
- * props of the given `source` item.
+ * Returns true if __all__ props of the given `predicate` exist and are equal to props of the given `source` item.
  *
  * @param sourceItem
  * @param predicate

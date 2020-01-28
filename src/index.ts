@@ -177,18 +177,14 @@ export function returnFound(source: any, predicate: HashMap): any | any[] | unde
     return undefined;
   }
 
-  let result: any | any[] = undefined;
+  let result: any | any[] | undefined = undefined;
 
   const appendResult = (item: HashMap): void => {
     if (!item || isEmpty(item)) {
       return;
     }
 
-    if (result) {
-      result = !Array.isArray(result) ? [ result, { ...item } ] : [ ...result, { ...item } ];
-    } else {
-      result = item;
-    }
+    result = result ? (!Array.isArray(result) ? [ result, { ...item } ] : [ ...result, { ...item } ]) : item;
   };
 
   const processObject = (item: HashMap): void => {

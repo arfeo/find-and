@@ -98,7 +98,7 @@ describe('replaceObject function', (): void => {
     });
   });
 
-  test('should return the found object', (): void => {
+  test('should return an object array of the found objects', (): void => {
     expect(returnFound(dataObject, { check: 'foo' })).toEqual([
       {
         id: 1,

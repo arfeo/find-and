@@ -2,12 +2,13 @@
 
 [![Build Status](https://travis-ci.org/arfeo/find-and.svg?branch=master)](https://travis-ci.org/arfeo/find-and)
 
-Find a nested object and immutably do these things:
+Find a nested object and do these things:
 
 * `appendProps`: append props to the found object.
 * `replaceObject`: replace all props of the found object.
 * `changeProps`: replace some existing props of the found object.
 * `removeObject`: remove the found object.
+* `returnFound`: get the found object, or an object array if there're more than one object found.
 
 ## Installation
 

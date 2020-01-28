@@ -166,3 +166,52 @@ export function removeObject(source: any, predicate: HashMap): any | undefined {
     return source;
   }
 }
+
+/**
+ * Function returns the found object, or an object array if there're more than one object found.
+ * If the `source` param is undefined, function returns undefined.
+ * If the `source` param is not an object, function returns it as is.
+ * If `predicate` param is not an object, or it is is empty, function returns the unmodified `source`.
+ *
+ * @param source
+ * @param predicate
+ */
+export function returnFound(source: any, predicate: HashMap): any | undefined {
+  if (source === undefined) {
+    return undefined;
+  }
+
+  let result: any | any[] = undefined;
+
+  const processObject = (item: HashMap): void => {
+    if (checkAgainstPredicate(item, predicate)) {
+      if (result) {
+        result = !Array.isArray(result) ? [
+          result,
+          { ...item },
+        ] : [
+          ...result,
+          { ...item },
+        ];
+      } else {
+        result = { ...item };
+      }
+
+      return;
+    }
+
+    Object.keys(item).forEach((key: string): void => {
+      if (isObject(item[key]) || Array.isArray(item[key])) {
+        result = returnFound(item[key], predicate);
+      }
+    });
+  };
+
+  if ((Array.isArray(source) || isObject(source)) && !isEmpty(predicate)) {
+    !Array.isArray(source) ? processObject(source) : source.map((item: HashMap): any => processObject(item));
+  } else {
+    return source;
+  }
+
+  return result;
+}

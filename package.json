@@ -1,7 +1,7 @@
 {
   "name": "find-and",
   "version": "1.0.2",
-  "description": "Find a nested object and immutably appendProps / replaceObject / changeProps / removeObject.",
+  "description": "Find a nested object and appendProps / replaceObject / changeProps / removeObject / returnFound",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/arfeo/find-and.git"

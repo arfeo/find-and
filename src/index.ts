@@ -185,13 +185,7 @@ export function returnFound(source: any, predicate: HashMap): any | undefined {
     }
 
     if (result) {
-      result = !Array.isArray(result) ? [
-        result,
-        { ...item },
-      ] : [
-        ...result,
-        { ...item },
-      ];
+      result = !Array.isArray(result) ? [ result, { ...item } ] : [ ...result, { ...item } ];
     } else {
       result = item;
     }

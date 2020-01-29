@@ -83,7 +83,7 @@ const dataObject2: { [key: string]: any } = {
   key: '77879a03-667a-4d30-a532-d43d3bec78c3',
 };
 
-describe('replaceObject function', (): void => {
+describe('returnFound function', (): void => {
   test('should return "string" if source is "string"', (): void => {
     expect(returnFound('string', {})).toBe('string');
   });
@@ -100,7 +100,7 @@ describe('replaceObject function', (): void => {
     expect(returnFound(dataArray, {})).toEqual(dataArray);
   });
 
-  test('should return the found object', (): void => {
+  test('should return the found object # 1', (): void => {
     expect(returnFound(dataArray, { id: 2 })).toEqual({
       id: 2,
       name: 'Two',
@@ -117,14 +117,14 @@ describe('replaceObject function', (): void => {
     });
   });
 
-  test('should return the found object', (): void => {
+  test('should return the found object # 2', (): void => {
     expect(returnFound(dataArray, { id: 4 })).toEqual({
       id: 4,
       name: 'Four',
     });
   });
 
-  test('should return the found object', (): void => {
+  test('should return the found object # 3', (): void => {
     expect(returnFound(dataObject1, { id: 1 })).toEqual({
       id: 1,
       check: 'foo',
@@ -132,7 +132,15 @@ describe('replaceObject function', (): void => {
     });
   });
 
-  test('should return an object array of the found objects', (): void => {
+  test('should return the found object # 4', (): void => {
+    expect(returnFound(dataObject2, { key: 'edcf2545-52fb-44f2-b64f-143aacccb9ed' })).toEqual({
+      children: 'Foo',
+      element: 'strong',
+      key: 'edcf2545-52fb-44f2-b64f-143aacccb9ed',
+    });
+  });
+
+  test('should return an object array of found objects', (): void => {
     expect(returnFound(dataObject1, { check: 'foo' })).toEqual([
       {
         id: 1,
@@ -145,13 +153,5 @@ describe('replaceObject function', (): void => {
         name: 'Three',
       },
     ]);
-  });
-
-  test('should return the found object', (): void => {
-    expect(returnFound(dataObject2, { key: 'edcf2545-52fb-44f2-b64f-143aacccb9ed' })).toEqual({
-      children: 'Foo',
-      element: 'strong',
-      key: 'edcf2545-52fb-44f2-b64f-143aacccb9ed',
-    });
   });
 });

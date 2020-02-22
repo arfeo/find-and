@@ -20,7 +20,6 @@
     "@typescript-eslint/no-parameter-properties": "off",
     "comma-dangle": ["error", "always-multiline"],
     "indent": ["error", 2, { "SwitchCase": 1 }],
-    "linebreak-style": ["error", "unix"],
     "quotes": ["error", "single"],
     "no-shadow": ["error", { "hoist": "all" }],
     "semi": ["error", "always"],

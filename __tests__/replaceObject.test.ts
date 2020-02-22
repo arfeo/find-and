@@ -1,6 +1,10 @@
 import { replaceObject } from '../src';
 
-const data: { [key: string]: any }[] = [
+interface HashMap {
+  [key: string]: any;
+}
+
+const data: HashMap[] = [
   {
     id: 1,
     name: 'One',
@@ -12,33 +16,6 @@ const data: { [key: string]: any }[] = [
           {
             id: 3,
             name: 'Three',
-          },
-          {
-            id: 4,
-            name: 'Four',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    id: 5,
-    name: 'Five',
-  },
-];
-
-const modifiedData: { [key: string]: any }[] = [
-  {
-    id: 1,
-    name: 'One',
-    children: [
-      {
-        id: 2,
-        name: 'Two',
-        children: [
-          {
-            id: 30,
-            name: 'Thirty',
           },
           {
             id: 4,
@@ -80,6 +57,31 @@ describe('replaceObject function', (): void => {
   });
 
   test('should replace the object with id = 3 to { id: 30, name: "Thirty" }', (): void => {
-    expect(replaceObject(data, { id: 3 }, { id: 30, name: 'Thirty' })).toEqual(modifiedData);
+    expect(replaceObject(data, { id: 3 }, { id: 30, name: 'Thirty' })).toEqual([
+      {
+        id: 1,
+        name: 'One',
+        children: [
+          {
+            id: 2,
+            name: 'Two',
+            children: [
+              {
+                id: 30,
+                name: 'Thirty',
+              },
+              {
+                id: 4,
+                name: 'Four',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: 5,
+        name: 'Five',
+      },
+    ]);
   });
 });

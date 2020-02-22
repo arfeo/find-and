@@ -1,6 +1,10 @@
 import { returnFound } from '../src';
 
-const dataArray: { [key: string]: any }[] = [
+interface HashMap {
+  [key: string]: any;
+}
+
+const dataArray: HashMap[] = [
   {
     id: 1,
     name: 'One',
@@ -27,7 +31,7 @@ const dataArray: { [key: string]: any }[] = [
   },
 ];
 
-const dataObject1: { [key: string]: any } = {
+const dataObject1: HashMap = {
   name: 'One',
   description: 'Description',
   children: [
@@ -49,7 +53,7 @@ const dataObject1: { [key: string]: any } = {
   ],
 };
 
-const dataObject2: { [key: string]: any } = {
+const dataObject2: HashMap = {
   children: [
     {
       children: {
@@ -81,6 +85,22 @@ const dataObject2: { [key: string]: any } = {
   ],
   element: null,
   key: '77879a03-667a-4d30-a532-d43d3bec78c3',
+};
+
+const dataObject3: HashMap = {
+  projects: [
+    {
+      name: 'sample',
+      id: 1,
+      photos: {
+        id: 12,
+        project: {
+          id: 1,
+          name: 'sample',
+        },
+      },
+    },
+  ],
 };
 
 describe('returnFound function', (): void => {
@@ -151,6 +171,26 @@ describe('returnFound function', (): void => {
         id: 2,
         check: 'foo',
         name: 'Three',
+      },
+    ]);
+  });
+
+  test('should return an object array of found objects', (): void => {
+    expect(returnFound(dataObject3, { id: 1 })).toEqual([
+      {
+        name: 'sample',
+        id: 1,
+        photos: {
+          id: 12,
+          project: {
+            id: 1,
+            name: 'sample',
+          },
+        },
+      },
+      {
+        id: 1,
+        name: 'sample',
       },
     ]);
   });

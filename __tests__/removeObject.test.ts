@@ -1,6 +1,10 @@
 import { removeObject } from '../src';
 
-const dataArray: { [key: string]: any }[] = [
+interface HashMap {
+  [key: string]: any;
+}
+
+const dataArray: HashMap[] = [
   {
     id: 1,
     name: 'One',
@@ -27,7 +31,7 @@ const dataArray: { [key: string]: any }[] = [
   },
 ];
 
-const dataObject: { [key: string]: any } = {
+const dataObject: HashMap = {
   name: 'One',
   description: 'Description',
   children: [
@@ -41,29 +45,6 @@ const dataObject: { [key: string]: any } = {
     },
   ],
 };
-
-const modifiedDataArray: { [key: string]: any }[] = [
-  {
-    id: 1,
-    name: 'One',
-    children: [
-      {
-        id: 2,
-        name: 'Two',
-        children: [
-          {
-            id: 4,
-            name: 'Four',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    id: 5,
-    name: 'Five',
-  },
-];
 
 describe('removeObject function', (): void => {
   test('should return null if source is null', (): void => {
@@ -83,7 +64,28 @@ describe('removeObject function', (): void => {
   });
 
   test('should remove the the object with id = 3', (): void => {
-    expect(removeObject(dataArray, { id: 3 })).toEqual(modifiedDataArray);
+    expect(removeObject(dataArray, { id: 3 })).toEqual([
+      {
+        id: 1,
+        name: 'One',
+        children: [
+          {
+            id: 2,
+            name: 'Two',
+            children: [
+              {
+                id: 4,
+                name: 'Four',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: 5,
+        name: 'Five',
+      },
+    ]);
   });
 
   test('should remove the the object with name = "One" and return undefined', (): void => {

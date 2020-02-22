@@ -1,6 +1,10 @@
 import { changeProps } from '../src';
 
-const dataArray: { [key: string]: any }[] = [
+interface HashMap {
+  [key: string]: any;
+}
+
+const dataArray: HashMap[] = [
   {
     id: 1,
     name: 'One',
@@ -27,7 +31,7 @@ const dataArray: { [key: string]: any }[] = [
   },
 ];
 
-const dataObject: { [key: string]: any } = {
+const dataObject1: HashMap = {
   name: 'One',
   description: 'Description',
   children: [
@@ -42,62 +46,18 @@ const dataObject: { [key: string]: any } = {
   ],
 };
 
-const modifiedDataArray1: { [key: string]: any }[] = [
-  {
-    id: 1,
-    name: 'One',
-    children: [
-      {
-        id: 2,
-        name: 'Two',
-        children: [
-          {
-            id: 30,
-            name: 'Three',
-          },
-          {
-            id: 4,
-            name: 'Four',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    id: 5,
-    name: 'Five',
-  },
-];
-
-const modifiedDataArray2: { [key: string]: any }[] = [
-  {
-    id: 1,
-    name: 'One',
-    children: [
-      {
-        id: 2,
-        name: 'Two',
-        children: [],
-      },
-    ],
-  },
-  {
-    id: 5,
-    name: 'Five',
-  },
-];
-
-const modifiedDataObject: { [key: string]: any } = {
-  name: 'Foo',
-  description: 'Description',
-  children: [
+const dataObject2: HashMap = {
+  projects: [
     {
+      name: 'sample',
       id: 1,
-      name: 'Two',
-    },
-    {
-      id: 2,
-      name: 'Three',
+      photos: {
+        id: 12,
+        project: {
+          id: 1,
+          name: 'sample',
+        },
+      },
     },
   ],
 };
@@ -128,14 +88,86 @@ describe('changeProps function', (): void => {
   });
 
   test('should change the id prop of the object with id = 3 to 30, skipping the unknownProp', (): void => {
-    expect(changeProps(dataArray, { id: 3 }, { id: 30, unknownProp: [] })).toEqual(modifiedDataArray1);
+    expect(changeProps(dataArray, { id: 3 }, { id: 30, unknownProp: [] })).toEqual([
+      {
+        id: 1,
+        name: 'One',
+        children: [
+          {
+            id: 2,
+            name: 'Two',
+            children: [
+              {
+                id: 30,
+                name: 'Three',
+              },
+              {
+                id: 4,
+                name: 'Four',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: 5,
+        name: 'Five',
+      },
+    ]);
   });
 
   test('should change the children prop of the object with id = 2 to an empty array', (): void => {
-    expect(changeProps(dataArray, { id: 2 }, { children: [] })).toEqual(modifiedDataArray2);
+    expect(changeProps(dataArray, { id: 2 }, { children: [] })).toEqual([
+      {
+        id: 1,
+        name: 'One',
+        children: [
+          {
+            id: 2,
+            name: 'Two',
+            children: [],
+          },
+        ],
+      },
+      {
+        id: 5,
+        name: 'Five',
+      },
+    ]);
   });
 
   test('should change the name prop of the object with name = "One" to "Foo"', (): void => {
-    expect(changeProps(dataObject, { name: 'One' }, { name: 'Foo' })).toEqual(modifiedDataObject);
+    expect(changeProps(dataObject1, { name: 'One' }, { name: 'Foo' })).toEqual({
+      name: 'Foo',
+      description: 'Description',
+      children: [
+        {
+          id: 1,
+          name: 'Two',
+        },
+        {
+          id: 2,
+          name: 'Three',
+        },
+      ],
+    });
+  });
+
+  test('should change the name prop of the object with id = 1 to "Foo"', (): void => {
+    expect(changeProps(dataObject2, { id: 1 }, { name: 'Foo' })).toEqual({
+      projects: [
+        {
+          name: 'Foo',
+          id: 1,
+          photos: {
+            id: 12,
+            project: {
+              id: 1,
+              name: 'Foo',
+            },
+          },
+        },
+      ],
+    });
   });
 });

@@ -17,14 +17,14 @@ export function appendProps(source: any, predicate: HashMap, newProps: HashMap):
   }
 
   const processObject = (item: HashMap): HashMap => {
-    if (checkAgainstPredicate(item, predicate)) {
+    const itemClone: HashMap = { ...item };
+
+    if (checkAgainstPredicate(itemClone, predicate)) {
       return {
-        ...item,
+        ...itemClone,
         ...newProps,
       };
     }
-
-    const itemClone: HashMap = { ...item };
 
     Object.keys(itemClone).forEach((key: string): void => {
       if (isObject(itemClone[key]) || Array.isArray(itemClone[key])) {
@@ -65,9 +65,9 @@ export function replaceObject(source: any, predicate: HashMap, replaceWith: Hash
       return replaceWith || {};
     }
 
-    Object.keys(item).forEach((key: string): void => {
-      if (isObject(item[key]) || Array.isArray(item[key])) {
-        itemClone[key] = replaceObject(item[key], predicate, replaceWith);
+    Object.keys(itemClone).forEach((key: string): void => {
+      if (isObject(itemClone[key]) || Array.isArray(itemClone[key])) {
+        itemClone[key] = replaceObject(itemClone[key], predicate, replaceWith);
       }
     });
 
@@ -106,13 +106,13 @@ export function changeProps(source: any, predicate: HashMap, replaceProps: HashM
           itemClone[key] = replaceProps[key];
         }
       });
-    } else {
-      Object.keys(itemClone).forEach((key: string): void => {
-        if (isObject(itemClone[key]) || Array.isArray(itemClone[key])) {
-          itemClone[key] = changeProps(itemClone[key], predicate, replaceProps);
-        }
-      });
     }
+
+    Object.keys(itemClone).forEach((key: string): void => {
+      if (isObject(itemClone[key]) || Array.isArray(itemClone[key])) {
+        itemClone[key] = changeProps(itemClone[key], predicate, replaceProps);
+      }
+    });
 
     return itemClone;
   };
@@ -143,7 +143,7 @@ export function removeObject(source: any, predicate: HashMap): any | undefined {
 
     Object.keys(itemClone).forEach((key: string): void => {
       if (isObject(itemClone[key]) || Array.isArray(itemClone[key])) {
-        itemClone[key] = removeObject(item[key], predicate);
+        itemClone[key] = removeObject(itemClone[key], predicate);
       }
     });
 
@@ -192,13 +192,13 @@ export function returnFound(source: any, predicate: HashMap): any | any[] | unde
 
     if (checkAgainstPredicate(itemClone, predicate)) {
       appendResult(itemClone);
-    } else {
-      Object.keys(itemClone).forEach((key: string): void => {
-        if (isObject(itemClone[key]) || Array.isArray(itemClone[key])) {
-          appendResult(returnFound(itemClone[key], predicate));
-        }
-      });
     }
+
+    Object.keys(itemClone).forEach((key: string): void => {
+      if (isObject(itemClone[key]) || Array.isArray(itemClone[key])) {
+        appendResult(returnFound(itemClone[key], predicate));
+      }
+    });
   };
 
   if ((Array.isArray(source) || isObject(source)) && !isEmpty(predicate)) {

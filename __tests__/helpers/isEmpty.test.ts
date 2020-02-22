@@ -1,7 +1,7 @@
 import { isEmpty } from '../../src/helpers';
 
 describe('isEmpty function', (): void => {
-  test('should return true if the given item solely comes from Object and it has no keys', (): void => {
+  test('should return true if the given item solely comes from Object, and it has no keys', (): void => {
     expect(isEmpty({})).toBe(true);
   });
 

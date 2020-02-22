@@ -10,7 +10,7 @@ export const isObject = (item: any): boolean => {
 
 /**
  * Local helper function.
- * Returns true if the prototype for the `item` param solely doesn't come from `Object` or it has no keys.
+ * Returns true if the prototype for the `item` param solely comes from `Object`, and it has no keys.
  *
  * @param item
  */

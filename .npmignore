@@ -3,6 +3,7 @@ coverage/
 src/
 .eslintrc
 .gitignore
+.travis.yml
 jest.config.js
 tsconfig.json
 yarn.lock

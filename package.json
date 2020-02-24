@@ -1,7 +1,7 @@
 {
   "name": "find-and",
-  "version": "1.1.4",
-  "description": "Find nested objects and: appendProps / replaceObject / changeProps / removeObject / returnFound",
+  "version": "1.2.0",
+  "description": "Find nested objects and: appendProps / replaceObject / changeProps / removeObject / returnFound / insertObjectBefore / insertObjectAfter",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/arfeo/find-and.git"
@@ -29,6 +29,7 @@
     "change",
     "remove",
     "properties",
+    "insert",
     "keys"
   ],
   "author": "Arfeo.net",

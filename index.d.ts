@@ -44,3 +44,21 @@ export function removeObject(source: any, predicate: HashMap): HashMap | HashMap
  * If the `predicate` param is not an object, or it's empty, function returns the unmodified `source`.
  */
 export function returnFound(source: any, predicate: HashMap): HashMap | HashMap[] | undefined;
+
+/**
+ * Function inserts the given `objectToInsert` before the found object if the found object's parent is array.
+ * If the `source` param is undefined, function returns undefined.
+ * If the `source` param is not an object, function returns it as is.
+ * If whether `predicate` or `objectToInsert` param is not an object,
+ * or the `predicate` object is empty, function returns the unmodified `source`.
+ */
+export function insertObjectBefore(source: any, predicate: HashMap, objectToInsert: HashMap): HashMap | HashMap[] | undefined;
+
+/**
+ * Function inserts the given `objectToInsert` after the found object if the found object's parent is array.
+ * If the `source` param is undefined, function returns undefined.
+ * If the `source` param is not an object, function returns it as is.
+ * If whether `predicate` or `objectToInsert` param is not an object,
+ * or the `predicate` object is empty, function returns the unmodified `source`.
+ */
+export function insertObjectAfter(source: any, predicate: HashMap, objectToInsert: HashMap): HashMap | HashMap[] | undefined;

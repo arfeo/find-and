@@ -28,7 +28,10 @@ export function appendProps(source: any, predicate: HashMap, newProps: HashMap):
 
     Object.keys(itemClone).forEach((key: string): void => {
       if (isObject(itemClone[key]) || Array.isArray(itemClone[key])) {
-        itemClone[key] = appendProps(itemClone[key], predicate, newProps);
+        itemClone = {
+          ...itemClone,
+          [key]: appendProps(itemClone[key], predicate, newProps),
+        };
       }
     });
 
@@ -67,7 +70,10 @@ export function replaceObject(source: any, predicate: HashMap, replaceWith: Hash
 
     Object.keys(itemClone).forEach((key: string): void => {
       if (isObject(itemClone[key]) || Array.isArray(itemClone[key])) {
-        itemClone[key] = replaceObject(itemClone[key], predicate, replaceWith);
+        itemClone = {
+          ...itemClone,
+          [key]: replaceObject(itemClone[key], predicate, replaceWith),
+        };
       }
     });
 
@@ -113,7 +119,10 @@ export function changeProps(source: any, predicate: HashMap, replaceProps: HashM
 
     Object.keys(itemClone).forEach((key: string): void => {
       if (isObject(itemClone[key]) || Array.isArray(itemClone[key])) {
-        itemClone[key] = changeProps(itemClone[key], predicate, replaceProps);
+        itemClone = {
+          ...itemClone,
+          [key]: changeProps(itemClone[key], predicate, replaceProps),
+        };
       }
     });
 
@@ -214,4 +223,91 @@ export function returnFound(source: any, predicate: HashMap): HashMap | HashMap[
   }
 
   return result;
+}
+
+/**
+ * Base function for `insertObjectBefore` and `insertObjectAfter`.
+ *
+ * @param source
+ * @param predicate
+ * @param objectToInsert
+ * @param isBefore
+ */
+function insertObject(source: any, predicate: HashMap, objectToInsert: HashMap, isBefore: boolean): HashMap | HashMap[] | undefined {
+  if (source === undefined) {
+    return undefined;
+  }
+
+  const processObject = (item: HashMap): HashMap => {
+    let itemClone: HashMap = { ...item };
+
+    Object.keys(itemClone).forEach((key: string): void => {
+      if (isObject(itemClone[key]) || Array.isArray(itemClone[key])) {
+        itemClone = {
+          ...itemClone,
+          [key]: insertObject(itemClone[key], predicate, objectToInsert, isBefore),
+        };
+      }
+    });
+
+    return itemClone;
+  };
+
+  const processArray = (sourceArray: HashMap[]): HashMap[] => {
+    const indexes: number[] = [];
+
+    const sourceClone = sourceArray.map((item: HashMap, index: number): HashMap => {
+      const processedItem: HashMap = processObject(item);
+
+      if (checkAgainstPredicate(processedItem, predicate)) {
+        indexes.push(index);
+      }
+
+      return processedItem;
+    });
+
+    if (indexes.length > 0) {
+      for (let i = 0; i < indexes.length; i += 1) {
+        sourceClone.splice(indexes[i] + i + (isBefore ? 0 : 1), 0, objectToInsert);
+      }
+    }
+
+    return sourceClone;
+  };
+
+  if ((Array.isArray(source) || isObject(source)) && !isEmpty(predicate) && !isEmpty(objectToInsert)) {
+    return !Array.isArray(source) ? processObject(source) : processArray(source);
+  }
+
+  return source;
+}
+
+/**
+ * Function inserts the given `objectToInsert` before the found object if the found object's parent is array.
+ * If the `source` param is undefined, function returns undefined.
+ * If the `source` param is not an object, function returns it as is.
+ * If whether `predicate` or `objectToInsert` param is not an object,
+ * or the `predicate` object is empty, function returns the unmodified `source`.
+ *
+ * @param source
+ * @param predicate
+ * @param objectToInsert
+ */
+export function insertObjectBefore(source: any, predicate: HashMap, objectToInsert: HashMap): HashMap | HashMap[] | undefined {
+  return insertObject(source, predicate, objectToInsert, true);
+}
+
+/**
+ * Function inserts the given `objectToInsert` after the found object if the found object's parent is array.
+ * If the `source` param is undefined, function returns undefined.
+ * If the `source` param is not an object, function returns it as is.
+ * If whether `predicate` or `objectToInsert` param is not an object,
+ * or the `predicate` object is empty, function returns the unmodified `source`.
+ *
+ * @param source
+ * @param predicate
+ * @param objectToInsert
+ */
+export function insertObjectAfter(source: any, predicate: HashMap, objectToInsert: HashMap): HashMap | HashMap[] | undefined {
+  return insertObject(source, predicate, objectToInsert, false);
 }

@@ -120,7 +120,7 @@ describe('returnFound function', (): void => {
     expect(returnFound(dataArray, {})).toEqual(dataArray);
   });
 
-  test('should return the found object # 1', (): void => {
+  test('should return the found object with id = 2 in dataArray', (): void => {
     expect(returnFound(dataArray, { id: 2 })).toEqual({
       id: 2,
       name: 'Two',
@@ -137,14 +137,14 @@ describe('returnFound function', (): void => {
     });
   });
 
-  test('should return the found object # 2', (): void => {
+  test('should return the found object with id = 4 in dataArray', (): void => {
     expect(returnFound(dataArray, { id: 4 })).toEqual({
       id: 4,
       name: 'Four',
     });
   });
 
-  test('should return the found object # 3', (): void => {
+  test('should return the found object wuth id = 1 in dataObject1', (): void => {
     expect(returnFound(dataObject1, { id: 1 })).toEqual({
       id: 1,
       check: 'foo',
@@ -152,7 +152,7 @@ describe('returnFound function', (): void => {
     });
   });
 
-  test('should return the found object # 4', (): void => {
+  test('should return the found object with key = "edcf2545-52fb-44f2-b64f-143aacccb9ed" in dataObject2', (): void => {
     expect(returnFound(dataObject2, { key: 'edcf2545-52fb-44f2-b64f-143aacccb9ed' })).toEqual({
       children: 'Foo',
       element: 'strong',
@@ -160,7 +160,7 @@ describe('returnFound function', (): void => {
     });
   });
 
-  test('should return an object array of found objects', (): void => {
+  test('should return an object array of found objects with check = "foo" in dataObject1', (): void => {
     expect(returnFound(dataObject1, { check: 'foo' })).toEqual([
       {
         id: 1,
@@ -175,7 +175,7 @@ describe('returnFound function', (): void => {
     ]);
   });
 
-  test('should return an object array of found objects', (): void => {
+  test('should return an object array of found objects with id = 1 in dataObject3', (): void => {
     expect(returnFound(dataObject3, { id: 1 })).toEqual([
       {
         name: 'sample',

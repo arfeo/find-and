@@ -87,7 +87,7 @@ describe('changeProps function', (): void => {
     expect(changeProps(dataArray, {}, {})).toEqual(dataArray);
   });
 
-  test('should change the id prop of the object with id = 3 to 30, skipping the unknownProp', (): void => {
+  test('should change the id prop of the object with id = 3 to 30, skipping the unknownProp, in dataArray', (): void => {
     expect(changeProps(dataArray, { id: 3 }, { id: 30, unknownProp: [] })).toEqual([
       {
         id: 1,
@@ -116,7 +116,7 @@ describe('changeProps function', (): void => {
     ]);
   });
 
-  test('should change the children prop of the object with id = 2 to an empty array', (): void => {
+  test('should change the children prop of the object with id = 2 to an empty array in dataArray', (): void => {
     expect(changeProps(dataArray, { id: 2 }, { children: [] })).toEqual([
       {
         id: 1,
@@ -136,7 +136,7 @@ describe('changeProps function', (): void => {
     ]);
   });
 
-  test('should change the name prop of the object with name = "One" to "Foo"', (): void => {
+  test('should change the name prop of the object with name = "One" to "Foo" in dataObject1', (): void => {
     expect(changeProps(dataObject1, { name: 'One' }, { name: 'Foo' })).toEqual({
       name: 'Foo',
       description: 'Description',
@@ -153,7 +153,7 @@ describe('changeProps function', (): void => {
     });
   });
 
-  test('should change the name prop of the object with id = 1 to "Foo"', (): void => {
+  test('should change the name prop of the object with id = 1 to "Foo" in dataObject2', (): void => {
     expect(changeProps(dataObject2, { id: 1 }, { name: 'Foo' })).toEqual({
       projects: [
         {

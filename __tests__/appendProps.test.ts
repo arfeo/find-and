@@ -4,7 +4,7 @@ interface HashMap {
   [key: string]: any;
 }
 
-const data: HashMap[] = [
+const dataObject1: HashMap[] = [
   {
     id: 1,
     name: 'One',
@@ -31,6 +31,22 @@ const data: HashMap[] = [
   },
 ];
 
+const dataObject2: HashMap = {
+  projects: [
+    {
+      name: 'sample',
+      id: 1,
+      photos: {
+        id: 12,
+        project: {
+          id: 1,
+          name: 'sample',
+        },
+      },
+    },
+  ],
+};
+
 describe('appendProps function', (): void => {
   test('should return 0 if source is 0', (): void => {
     expect(appendProps(0, {}, {})).toBe(0);
@@ -41,23 +57,23 @@ describe('appendProps function', (): void => {
   });
 
   test('should return unmodified source if predicate is not an object', (): void => {
-    expect(appendProps(data, null, {})).toEqual(data);
+    expect(appendProps(dataObject1, null, {})).toEqual(dataObject1);
   });
 
   test('should return unmodified source if predicate is empty', (): void => {
-    expect(appendProps(data, {}, {})).toEqual(data);
+    expect(appendProps(dataObject1, {}, {})).toEqual(dataObject1);
   });
 
   test('should return unmodified source if newProps is not an object', (): void => {
-    expect(appendProps(data, {}, null)).toEqual(data);
+    expect(appendProps(dataObject1, {}, null)).toEqual(dataObject1);
   });
 
   test('should return unmodified source if newProps is empty', (): void => {
-    expect(appendProps(data, {}, {})).toEqual(data);
+    expect(appendProps(dataObject1, {}, {})).toEqual(dataObject1);
   });
 
-  test('should append a description prop to the object with id = 2', (): void => {
-    expect(appendProps(data, { id: 3 }, { description: 'Foo' })).toEqual([
+  test('should append a description prop to the object with id = 2 in dataObject1', (): void => {
+    expect(appendProps(dataObject1, { id: 3 }, { description: 'Foo' })).toEqual([
       {
         id: 1,
         name: 'One',
@@ -86,8 +102,8 @@ describe('appendProps function', (): void => {
     ]);
   });
 
-  test('should append a description prop to the object with id = 3', (): void => {
-    expect(appendProps(data, { id: 2 }, { description: 'Foo' })).toEqual([
+  test('should append a description prop to the object with id = 3 in dataObject1', (): void => {
+    expect(appendProps(dataObject1, { id: 2 }, { description: 'Foo' })).toEqual([
       {
         id: 1,
         name: 'One',
@@ -114,5 +130,25 @@ describe('appendProps function', (): void => {
         name: 'Five',
       },
     ]);
+  });
+
+  test('should append a description prop to the object with id = 1 in dataObject2', (): void => {
+    expect(appendProps(dataObject2, { id: 1 }, { description: 'Foo' })).toEqual({
+      projects: [
+        {
+          name: 'sample',
+          id: 1,
+          description: 'Foo',
+          photos: {
+            id: 12,
+            project: {
+              id: 1,
+              name: 'sample',
+              description: 'Foo',
+            },
+          },
+        },
+      ],
+    });
   });
 });

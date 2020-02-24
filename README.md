@@ -9,6 +9,8 @@ Find nested objects and:
 * `changeProps`: replace some existing props of the found object.
 * `removeObject`: remove the found object.
 * `returnFound`: get the found object, or an object array if there's more than one object found.
+* `insertObjectBefore`: insert an object before the found object if the found object's parent is array.
+* `insertObjectAfter`: insert an object after the found object if the found object's parent is array.
 
 ## Installation
 

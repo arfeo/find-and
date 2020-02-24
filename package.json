@@ -1,6 +1,6 @@
 {
   "name": "find-and",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "Find nested objects and: appendProps / replaceObject / changeProps / removeObject / returnFound",
   "repository": {
     "type": "git",
@@ -24,7 +24,12 @@
     "nested",
     "object",
     "replace",
-    "properties"
+    "append",
+    "find",
+    "change",
+    "remove",
+    "properties",
+    "keys"
   ],
   "author": "Arfeo.net",
   "license": "MIT",

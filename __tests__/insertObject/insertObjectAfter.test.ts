@@ -5,6 +5,7 @@ import {
   dataObject2,
   dataObject3,
   dataObject4,
+  dataObject5,
 } from './';
 
 describe('insertObjectAfter function', (): void => {
@@ -178,6 +179,27 @@ describe('insertObjectAfter function', (): void => {
         {
           id: 2,
           name: 'foo',
+        },
+      ],
+    });
+  });
+
+  test('should insert { id: 3, name: "Foo" } after object with id = 2 in dataObject5', (): void => {
+    expect(insertObjectAfter(dataObject5, { id: 2 }, { id: 3, name: 'Foo' })).toEqual({
+      layers: [
+        {
+          id: 1,
+          name: 'One',
+          children: [0, 0],
+        },
+        {
+          id: 2,
+          name: 'Two',
+          children: [0, 0],
+        },
+        {
+          id: 3,
+          name: 'Foo',
         },
       ],
     });

@@ -69,6 +69,21 @@ const dataObject2: HashMap = {
   ],
 };
 
+const dataObject3: HashMap = {
+  layers: [
+    {
+      id: 1,
+      name: 'One',
+      children: [0, 0],
+    },
+    {
+      id: 2,
+      name: 'Two',
+      children: [0, 0],
+    },
+  ],
+};
+
 describe('removeObject function', (): void => {
   test('should return null if source is null', (): void => {
     expect(removeObject(null, {})).toBe(null);
@@ -145,6 +160,18 @@ describe('removeObject function', (): void => {
         {
           id: 1,
           name: 'sample',
+        },
+      ],
+    });
+  });
+
+  test('should remove the the object with id = 2 in dataObject3', (): void => {
+    expect(removeObject(dataObject3, { id: 2 })).toEqual({
+      layers: [
+        {
+          id: 1,
+          name: 'One',
+          children: [0, 0],
         },
       ],
     });

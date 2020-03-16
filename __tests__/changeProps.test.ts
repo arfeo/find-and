@@ -62,6 +62,21 @@ const dataObject2: HashMap = {
   ],
 };
 
+const dataObject3: HashMap = {
+  layers: [
+    {
+      id: 1,
+      name: 'One',
+      children: [0, 0],
+    },
+    {
+      id: 2,
+      name: 'Two',
+      children: [0, 0],
+    },
+  ],
+};
+
 describe('changeProps function', (): void => {
   test('should return NaN if source is NaN', (): void => {
     expect(changeProps(NaN, {}, {})).toBe(NaN);
@@ -166,6 +181,23 @@ describe('changeProps function', (): void => {
               name: 'Foo',
             },
           },
+        },
+      ],
+    });
+  });
+
+  test('should change the name prop of the object with id = 1 to "Foo" in dataObject3', (): void => {
+    expect(changeProps(dataObject3, {id: 1}, {name: 'Foo'})).toEqual({
+      layers: [
+        {
+          id: 1,
+          name: 'Foo',
+          children: [0, 0],
+        },
+        {
+          id: 2,
+          name: 'Two',
+          children: [0, 0],
         },
       ],
     });

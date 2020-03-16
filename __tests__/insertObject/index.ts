@@ -107,4 +107,19 @@ export const dataObject4: HashMap = {
   ],
 };
 
+export const dataObject5: HashMap = {
+  layers: [
+    {
+      id: 1,
+      name: 'One',
+      children: [0, 0],
+    },
+    {
+      id: 2,
+      name: 'Two',
+      children: [0, 0],
+    },
+  ],
+};
+
 export { insertObjectBefore, insertObjectAfter } from '../../src';

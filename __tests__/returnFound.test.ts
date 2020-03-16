@@ -103,6 +103,21 @@ const dataObject3: HashMap = {
   ],
 };
 
+const dataObject4: HashMap = {
+  layers: [
+    {
+      id: 1,
+      name: 'One',
+      children: [0, 0],
+    },
+    {
+      id: 2,
+      name: 'Two',
+      children: [0, 0],
+    },
+  ],
+};
+
 describe('returnFound function', (): void => {
   test('should return "string" if source is "string"', (): void => {
     expect(returnFound('string', {})).toBe('string');
@@ -193,5 +208,13 @@ describe('returnFound function', (): void => {
         name: 'sample',
       },
     ]);
+  });
+
+  test('should return an object array of found objects with id = 2 in dataObject4', (): void => {
+    expect(returnFound(dataObject4, { id: 2 })).toEqual({
+      id: 2,
+      name: 'Two',
+      children: [0, 0],
+    });
   });
 });

@@ -11,12 +11,16 @@ import { checkAgainstPredicate, isEmpty, isObject } from './helpers';
  * @param predicate
  * @param newProps
  */
-export function appendProps(source: any, predicate: HashMap, newProps: HashMap): HashMap | HashMap[] | undefined {
+export function appendProps(source: any, predicate: HashMap, newProps: HashMap): any | any[] | undefined {
   if (source === undefined) {
     return undefined;
   }
 
-  const processObject = (item: HashMap): HashMap => {
+  const processObject = (item: any): any => {
+    if (!isObject(item)) {
+      return item;
+    }
+
     let itemClone: HashMap = { ...item };
 
     if (checkAgainstPredicate(itemClone, predicate)) {
@@ -39,7 +43,7 @@ export function appendProps(source: any, predicate: HashMap, newProps: HashMap):
   };
 
   if ((Array.isArray(source) || isObject(source)) && !isEmpty(predicate) && !isEmpty(newProps)) {
-    return !Array.isArray(source) ? processObject(source) : source.map((item: HashMap): HashMap => processObject(item));
+    return !Array.isArray(source) ? processObject(source) : source.map((item: any): any => processObject(item));
   }
 
   return source;
@@ -56,12 +60,16 @@ export function appendProps(source: any, predicate: HashMap, newProps: HashMap):
  * @param predicate
  * @param replaceWith
  */
-export function replaceObject(source: any, predicate: HashMap, replaceWith: HashMap): HashMap | HashMap[] | undefined {
+export function replaceObject(source: any, predicate: HashMap, replaceWith: HashMap): any | any[] | undefined {
   if (source === undefined) {
     return undefined;
   }
 
-  const processObject = (item: HashMap): HashMap => {
+  const processObject = (item: any): any => {
+    if (!isObject(item)) {
+      return item;
+    }
+
     let itemClone: HashMap = { ...item };
 
     if (checkAgainstPredicate(itemClone, predicate)) {
@@ -81,7 +89,7 @@ export function replaceObject(source: any, predicate: HashMap, replaceWith: Hash
   };
 
   if ((Array.isArray(source) || isObject(source)) && !isEmpty(predicate) && !isEmpty(replaceWith)) {
-    return !Array.isArray(source) ? processObject(source) : source.map((item: HashMap): HashMap => processObject(item));
+    return !Array.isArray(source) ? processObject(source) : source.map((item: any): any => processObject(item));
   }
 
   return source;
@@ -98,12 +106,16 @@ export function replaceObject(source: any, predicate: HashMap, replaceWith: Hash
  * @param predicate
  * @param replaceProps
  */
-export function changeProps(source: any, predicate: HashMap, replaceProps: HashMap): HashMap | HashMap[] | undefined {
+export function changeProps(source: any, predicate: HashMap, replaceProps: HashMap): any | any[] | undefined {
   if (source === undefined) {
     return undefined;
   }
 
-  const processObject = (item: HashMap): HashMap => {
+  const processObject = (item: any): any => {
+    if (!isObject(item)) {
+      return item;
+    }
+
     let itemClone: HashMap = { ...item };
 
     if (checkAgainstPredicate(itemClone, predicate)) {
@@ -130,7 +142,7 @@ export function changeProps(source: any, predicate: HashMap, replaceProps: HashM
   };
 
   if ((Array.isArray(source) || isObject(source)) && !isEmpty(predicate) && !isEmpty(replaceProps)) {
-    return !Array.isArray(source) ? processObject(source) : source.map((item: HashMap): HashMap => processObject(item));
+    return !Array.isArray(source) ? processObject(source) : source.map((item: any): any => processObject(item));
   }
 
   return source;
@@ -145,12 +157,16 @@ export function changeProps(source: any, predicate: HashMap, replaceProps: HashM
  * @param source
  * @param predicate
  */
-export function removeObject(source: any, predicate: HashMap): HashMap | HashMap[] | undefined {
+export function removeObject(source: any, predicate: HashMap): any | any[] | undefined {
   if (source === undefined) {
     return undefined;
   }
 
-  const processObject = (item: HashMap): HashMap => {
+  const processObject = (item: any): any => {
+    if (!isObject(item)) {
+      return item;
+    }
+
     let itemClone: HashMap = { ...item };
 
     Object.keys(itemClone).forEach((key: string): void => {
@@ -173,7 +189,7 @@ export function removeObject(source: any, predicate: HashMap): HashMap | HashMap
     } else {
       return source.filter((item: HashMap): boolean => {
         return !checkAgainstPredicate(item, predicate);
-      }).map((item: HashMap): HashMap => processObject(item));
+      }).map((item: any): any => processObject(item));
     }
   } else {
     return source;
@@ -189,7 +205,7 @@ export function removeObject(source: any, predicate: HashMap): HashMap | HashMap
  * @param source
  * @param predicate
  */
-export function returnFound(source: any, predicate: HashMap): HashMap | HashMap[] | undefined {
+export function returnFound(source: any, predicate: HashMap): any | any[] | undefined {
   if (source === undefined) {
     return undefined;
   }
@@ -204,7 +220,7 @@ export function returnFound(source: any, predicate: HashMap): HashMap | HashMap[
     result = result ? (!Array.isArray(result) ? [ result, { ...item } ] : [ ...result, { ...item } ]) : item;
   };
 
-  const processObject = (item: HashMap): void => {
+  const processObject = (item: any): void => {
     if (checkAgainstPredicate(item, predicate)) {
       appendResult(item);
     }
@@ -217,7 +233,7 @@ export function returnFound(source: any, predicate: HashMap): HashMap | HashMap[
   };
 
   if ((Array.isArray(source) || isObject(source)) && !isEmpty(predicate)) {
-    !Array.isArray(source) ? processObject(source) : source.map((item: HashMap): void => processObject(item));
+    !Array.isArray(source) ? processObject(source) : source.map((item: any): void => processObject(item));
   } else {
     return source;
   }
@@ -233,12 +249,16 @@ export function returnFound(source: any, predicate: HashMap): HashMap | HashMap[
  * @param objectToInsert
  * @param isBefore
  */
-function insertObject(source: any, predicate: HashMap, objectToInsert: HashMap, isBefore: boolean): HashMap | HashMap[] | undefined {
+function insertObject(source: any, predicate: HashMap, objectToInsert: HashMap, isBefore: boolean): any | any[] | undefined {
   if (source === undefined) {
     return undefined;
   }
 
-  const processObject = (item: HashMap): HashMap => {
+  const processObject = (item: any): any => {
+    if (!isObject(item)) {
+      return item;
+    }
+
     let itemClone: HashMap = { ...item };
 
     Object.keys(itemClone).forEach((key: string): void => {
@@ -253,11 +273,11 @@ function insertObject(source: any, predicate: HashMap, objectToInsert: HashMap, 
     return itemClone;
   };
 
-  const processArray = (sourceArray: HashMap[]): HashMap[] => {
+  const processArray = (sourceArray: any[]): any[] => {
     const indexes: number[] = [];
 
-    const sourceClone = sourceArray.map((item: HashMap, index: number): HashMap => {
-      const processedItem: HashMap = processObject(item);
+    const sourceClone = sourceArray.map((item: any, index: number): any => {
+      const processedItem: any = processObject(item);
 
       if (checkAgainstPredicate(processedItem, predicate)) {
         indexes.push(index);
@@ -293,7 +313,7 @@ function insertObject(source: any, predicate: HashMap, objectToInsert: HashMap, 
  * @param predicate
  * @param objectToInsert
  */
-export function insertObjectBefore(source: any, predicate: HashMap, objectToInsert: HashMap): HashMap | HashMap[] | undefined {
+export function insertObjectBefore(source: any, predicate: HashMap, objectToInsert: HashMap): any | any[] | undefined {
   return insertObject(source, predicate, objectToInsert, true);
 }
 
@@ -308,6 +328,6 @@ export function insertObjectBefore(source: any, predicate: HashMap, objectToInse
  * @param predicate
  * @param objectToInsert
  */
-export function insertObjectAfter(source: any, predicate: HashMap, objectToInsert: HashMap): HashMap | HashMap[] | undefined {
+export function insertObjectAfter(source: any, predicate: HashMap, objectToInsert: HashMap): any | any[] | undefined {
   return insertObject(source, predicate, objectToInsert, false);
 }

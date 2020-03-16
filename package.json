@@ -1,6 +1,6 @@
 {
   "name": "find-and",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Find nested objects and: appendProps / replaceObject / changeProps / removeObject / returnFound / insertObjectBefore / insertObjectAfter",
   "repository": {
     "type": "git",

@@ -47,6 +47,21 @@ const dataObject2: HashMap = {
   ],
 };
 
+const dataObject3: HashMap = {
+  layers: [
+    {
+      id: 1,
+      name: 'One',
+      children: [0, 0],
+    },
+    {
+      id: 2,
+      name: 'Two',
+      children: [0, 0],
+    },
+  ],
+};
+
 describe('appendProps function', (): void => {
   test('should return 0 if source is 0', (): void => {
     expect(appendProps(0, {}, {})).toBe(0);
@@ -147,6 +162,24 @@ describe('appendProps function', (): void => {
               description: 'Foo',
             },
           },
+        },
+      ],
+    });
+  });
+
+  test('should append a description prop to the object with id = 1 in dataObject3', (): void => {
+    expect(appendProps(dataObject3, { id: 1 }, { description: 'Foo' })).toEqual({
+      layers: [
+        {
+          id: 1,
+          name: 'One',
+          description: 'Foo',
+          children: [0, 0],
+        },
+        {
+          id: 2,
+          name: 'Two',
+          children: [0, 0],
         },
       ],
     });

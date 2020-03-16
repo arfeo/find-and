@@ -54,6 +54,21 @@ const dataObject2: HashMap = {
   ],
 };
 
+const dataObject3: HashMap = {
+  layers: [
+    {
+      id: 1,
+      name: 'One',
+      children: [0, 0],
+    },
+    {
+      id: 2,
+      name: 'Two',
+      children: [0, 0],
+    },
+  ],
+};
+
 describe('replaceObject function', (): void => {
   test('should return "string" if source is "string"', (): void => {
     expect(replaceObject('string', {}, {})).toBe('string');
@@ -123,6 +138,23 @@ describe('replaceObject function', (): void => {
           id: 100,
           name: 'Boo',
           kind: 'new',
+        },
+      ],
+    });
+  });
+
+  test('should replace objects with id = 1 with { id: 100, name: "Boo", kind: "new" } in dataObject3', (): void => {
+    expect(replaceObject(dataObject3, { id: 1 }, { id: 100, name: 'Boo', kind: 'new' })).toEqual({
+      layers: [
+        {
+          id: 100,
+          name: 'Boo',
+          kind: 'new',
+        },
+        {
+          id: 2,
+          name: 'Two',
+          children: [0, 0],
         },
       ],
     });

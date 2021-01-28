@@ -34,10 +34,15 @@ describe('checkAgainstPredicate function', (): void => {
 
   test('should return true if all props of the given predicate exist and are equal to props of the given source item # 3', (): void => {
     expect(checkAgainstPredicate(data2, {
+      id: 1,
       children: [
         {
           id: 1,
           name: 'Child #1',
+        },
+        {
+          id: 2,
+          name: 'Child #2',
         },
       ],
     })).toBe(true);
@@ -45,7 +50,6 @@ describe('checkAgainstPredicate function', (): void => {
 
   test('should return true if all props of the given predicate exist and are equal to props of the given source item # 4', (): void => {
     expect(checkAgainstPredicate(data2, {
-      id: 1,
       children: [
         {
           id: 1,
@@ -84,7 +88,7 @@ describe('checkAgainstPredicate function', (): void => {
       children: [
         {
           id: 1,
-          name: 'Child',
+          name: 'Child #1',
         },
       ],
     })).toBe(false);

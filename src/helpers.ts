@@ -26,8 +26,12 @@ export const isEmpty = (item: any): boolean => {
  * @param predicate
  */
 export const checkAgainstPredicate = (sourceItem: any, predicate: any): boolean => {
+  if (typeof sourceItem !== typeof predicate) {
+    return false;
+  }
+
   if (Array.isArray(sourceItem) && Array.isArray(predicate)) {
-    return predicate.every((_, key: number): boolean => checkAgainstPredicate(sourceItem[key], predicate[key]));
+    return sourceItem.every((_, key: number): boolean => checkAgainstPredicate(sourceItem[key], predicate[key]));
   }
 
   if (isObject(sourceItem) && isObject(predicate)) {

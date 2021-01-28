@@ -11,7 +11,7 @@ import { checkAgainstPredicate, isEmpty, isObject } from './helpers';
  * @param predicate
  * @param newProps
  */
-export function appendProps(source: any, predicate: HashMap, newProps: HashMap): any | any[] | undefined {
+export function appendProps(source: any, predicate: HashMap, newProps: HashMap): any {
   if (source === undefined) {
     return undefined;
   }
@@ -60,7 +60,7 @@ export function appendProps(source: any, predicate: HashMap, newProps: HashMap):
  * @param predicate
  * @param replaceWith
  */
-export function replaceObject(source: any, predicate: HashMap, replaceWith: HashMap): any | any[] | undefined {
+export function replaceObject(source: any, predicate: HashMap, replaceWith: HashMap): any {
   if (source === undefined) {
     return undefined;
   }
@@ -106,7 +106,7 @@ export function replaceObject(source: any, predicate: HashMap, replaceWith: Hash
  * @param predicate
  * @param replaceProps
  */
-export function changeProps(source: any, predicate: HashMap, replaceProps: HashMap): any | any[] | undefined {
+export function changeProps(source: any, predicate: HashMap, replaceProps: HashMap): any {
   if (source === undefined) {
     return undefined;
   }
@@ -157,7 +157,7 @@ export function changeProps(source: any, predicate: HashMap, replaceProps: HashM
  * @param source
  * @param predicate
  */
-export function removeObject(source: any, predicate: HashMap): any | any[] | undefined {
+export function removeObject(source: any, predicate: HashMap): any {
   if (source === undefined) {
     return undefined;
   }
@@ -205,7 +205,7 @@ export function removeObject(source: any, predicate: HashMap): any | any[] | und
  * @param source
  * @param predicate
  */
-export function returnFound(source: any, predicate: HashMap): any | any[] | undefined {
+export function returnFound(source: any, predicate: HashMap): any {
   if (source === undefined) {
     return undefined;
   }
@@ -249,7 +249,7 @@ export function returnFound(source: any, predicate: HashMap): any | any[] | unde
  * @param objectToInsert
  * @param isBefore
  */
-function insertObject(source: any, predicate: HashMap, objectToInsert: HashMap, isBefore: boolean): any | any[] | undefined {
+function insertObject(source: any, predicate: HashMap, objectToInsert: HashMap, isBefore: boolean): any {
   if (source === undefined) {
     return undefined;
   }
@@ -313,7 +313,7 @@ function insertObject(source: any, predicate: HashMap, objectToInsert: HashMap, 
  * @param predicate
  * @param objectToInsert
  */
-export function insertObjectBefore(source: any, predicate: HashMap, objectToInsert: HashMap): any | any[] | undefined {
+export function insertObjectBefore(source: any, predicate: HashMap, objectToInsert: HashMap): any {
   return insertObject(source, predicate, objectToInsert, true);
 }
 
@@ -328,6 +328,6 @@ export function insertObjectBefore(source: any, predicate: HashMap, objectToInse
  * @param predicate
  * @param objectToInsert
  */
-export function insertObjectAfter(source: any, predicate: HashMap, objectToInsert: HashMap): any | any[] | undefined {
+export function insertObjectAfter(source: any, predicate: HashMap, objectToInsert: HashMap): any {
   return insertObject(source, predicate, objectToInsert, false);
 }

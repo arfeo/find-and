@@ -26,7 +26,15 @@ export const isEmpty = (item: any): boolean => {
  * @param predicate
  */
 export const checkAgainstPredicate = (sourceItem: any, predicate: any): boolean => {
-  return isObject(sourceItem) && isObject(predicate) && Object.keys(predicate).every((key: string): boolean => {
-    return Object.prototype.hasOwnProperty.call(sourceItem, key) && predicate[key] === sourceItem[key];
-  });
+  if (Array.isArray(sourceItem) && Array.isArray(predicate)) {
+    return predicate.every((_, key: number): boolean => checkAgainstPredicate(sourceItem[key], predicate[key]));
+  }
+
+  if (isObject(sourceItem) && isObject(predicate)) {
+    return Object.keys(predicate).every((key: string): boolean => {
+      return Object.prototype.hasOwnProperty.call(sourceItem, key) && checkAgainstPredicate(sourceItem[key], predicate[key]);
+    });
+  }
+
+  return sourceItem === predicate;
 };

@@ -210,6 +210,21 @@ describe('returnFound function', (): void => {
     ]);
   });
 
+  test('should return an object array of found objects with project = { id: 1, name: "sample"} in dataObject3', (): void => {
+    expect(returnFound(dataObject3, {
+      project: {
+        id: 1,
+        name: 'sample',
+      },
+    })).toEqual({
+      id: 12,
+      project: {
+        id: 1,
+        name: 'sample',
+      },
+    });
+  });
+
   test('should return an object array of found objects with id = 2 in dataObject4', (): void => {
     expect(returnFound(dataObject4, { id: 2 })).toEqual({
       id: 2,

@@ -7,6 +7,7 @@ src/
 jest.config.js
 tsconfig.json
 yarn.lock
+.idea/
 
 CODE_OF_CONDUCT.md
 ISSUE_TEMPLATE.md

@@ -1,5 +1,9 @@
 import { checkAgainstPredicate, isEmpty, isObject } from './helpers';
 
+interface HashMap {
+  [key: string]: any;
+}
+
 /**
  * Function appends props to a nested object in an object or object array.
  * If the `source` param is undefined, function returns undefined.

@@ -14,9 +14,6 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true
   },
-  "typeRoots": [
-    "index.d.ts"
-  ],
   "include": [
     "./src/**/*.ts"
   ],
